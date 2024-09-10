@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :invoices
+  #has_many :invoices
 
   enum role: {user: 0, admin: 1 }
 
