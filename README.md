@@ -1,24 +1,36 @@
-# README
+# Passos para rodar localmente
+# Instale as dependências
+bundle install
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Configure seu banco de dados PostgreSQL localmente
+cp .env.local .env
 
-Things you may want to cover:
+# Crie e migre o banco de dados
+rails db:create
+rails db:migrate
 
-* Ruby version
+# Execute o servidor
+rails s
 
-* System dependencies
+# ************************************************
+# ************************************************
 
-* Configuration
 
-* Database creation
+# Passos para rodar com Docker
+# Copie as variáveis de ambiente
+cp .env.docker .env
 
-* Database initialization
+# Construa os contêineres e inicie o projeto
+# O.S.  Windows
+docker-compose up --build -d
+# O.S.  Linux
+sudo docker-compose up --build -d
 
-* How to run the test suite
+# Crie e migre o banco de dados
+# O.S.  Windows
+docker-compose run app rake db:create
+docker-compose run app rake db:migrate
+# O.S.  Linux
+sudo docker-compose run app rake db:create
+sudo docker-compose run app rake db:migrate
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
