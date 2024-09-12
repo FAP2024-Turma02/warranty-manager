@@ -13,6 +13,11 @@
 !/log/.keep
 !/tmp/.keep
 
+# Ignore env
+ /.env
+ /.env.local
+ /.env.docker
+
 # Ignore pidfiles, but keep the directory.
 /tmp/pids/*
 !/tmp/pids/
