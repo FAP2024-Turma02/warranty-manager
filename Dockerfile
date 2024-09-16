@@ -18,7 +18,7 @@ COPY . /app
 
 ENV RAILS_ENV=development
 ENV RACK_ENV=development
-ENV PORT 5000
+ENV PORT 3000
 
 EXPOSE ${PORT}
 
