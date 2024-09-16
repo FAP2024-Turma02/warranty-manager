@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_09_13_123731) do
+ActiveRecord::Schema[7.0].define(version: 2024_09_14_150305) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -31,6 +31,15 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_13_123731) do
     t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "warranties", force: :cascade do |t|
+    t.string "warranty_number"
+    t.date "issue_date"
+    t.date "expirity_date"
+    t.integer "validity_period"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

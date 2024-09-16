@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  warranty_number: MyString
+  issue_date: 2024-09-14
+  expirity_date: 2024-09-14
+  validity_period: 1
+
+two:
+  warranty_number: MyString
+  issue_date: 2024-09-14
+  expirity_date: 2024-09-14
+  validity_period: 1
