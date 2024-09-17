@@ -4,4 +4,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "home#index"
+  #
+  # get 'users', to 1user#index'
+  # resources :companies, except: [:destroy, :updatr]
+
 end
