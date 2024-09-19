@@ -1,10 +1,4 @@
 class Product < ApplicationRecord
-
     validates :name, presence: true, length: { maximum: 45 }
-    validates :price, presence: true
-    validates :serial_number, presence: true
-    validates :warranty_expiry_date, presence: true
-    validates :invoice_id, presence: true
-    validates :store_id, presence: true
-
+    validates_presence_of :price,:serial_number,:warranty_expiry_date,:invoice_id,:store_id
 end
