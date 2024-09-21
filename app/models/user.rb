@@ -1,8 +1,6 @@
 class User < ApplicationRecord
-  # Inclua os módulos do Devise Token Auth
   extend Devise::Models
   include DeviseTokenAuth::Concerns::User
-
   devise :database_authenticatable,  
          :registerable,
          :recoverable, 
