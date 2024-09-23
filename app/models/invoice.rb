@@ -7,4 +7,3 @@ class Invoice < ApplicationRecord
   validates :pdf, presence: true
 
 end
-  
