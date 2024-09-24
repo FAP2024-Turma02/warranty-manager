@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_09_19_020424) do
+ActiveRecord::Schema[7.0].define(version: 2024_09_20_031710) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -53,6 +53,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_19_020424) do
     t.integer "validity_period"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "products_id", null: false
+    t.index ["products_id"], name: "index_warranties_on_products_id"
   end
 
+  add_foreign_key "warranties", "products", column: "products_id"
 end
