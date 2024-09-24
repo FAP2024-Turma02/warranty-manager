@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_09_20_031710) do
+
+ActiveRecord::Schema[7.0].define(version: 2024_09_23_144611) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -47,10 +49,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_20_031710) do
   end
 
   create_table "warranties", force: :cascade do |t|
-    t.string "warranty_number"
-    t.date "issue_date"
-    t.date "expirity_date"
-    t.integer "validity_period"
+    t.string "warranty_number", null: false
+    t.date "issue_date", null: false
+    t.date "expirity_date", null: false
+    t.integer "validity_period", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "products_id", null: false
