@@ -1,7 +1,5 @@
 class Warranty < ApplicationRecord
-    belongs_to :product
-  
-    validates :warranty_number, :issue_date, :expirity_date, :validity_period,
-               presence: true
-  end
-  
+  validates :warranty_number, :issue_date, :expirity_date, :validity_period, presence: true
+
+  belongs_to :product
+end
