@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   #
   # get 'users', to 1user#index'
   # resources :companies, except: [:destroy, :updatr]
+  resources :invoices, only: [:index, :show]
 
 end
