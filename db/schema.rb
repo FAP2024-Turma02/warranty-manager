@@ -86,9 +86,12 @@ ActiveRecord::Schema[7.0].define(version: 2024_10_01_004909) do
     t.string "name", null: false
     t.integer "role", default: 0
     t.boolean "admin", default: false
-    t.string "provider"
+    t.string "provider", default: "email", null: false
+    t.string "uid", default: "", null: false
+    t.json "tokens"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
   create_table "warranties", force: :cascade do |t|
