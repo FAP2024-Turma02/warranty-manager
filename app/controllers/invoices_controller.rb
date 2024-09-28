@@ -17,5 +17,4 @@ class InvoicesController < ApplicationController
     rescue ActiveRecord::RecordNotFound
       render json: { error: "Invoice not found" }, status: :not_found
     end
-  end
-  
+end
