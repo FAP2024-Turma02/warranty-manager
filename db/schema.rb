@@ -48,6 +48,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_10_01_004909) do
     t.date "issue_date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_invoices_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -105,6 +107,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_10_01_004909) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "invoices", "users"
   add_foreign_key "warranties", "products"
   add_foreign_key "warranties", "products", column: "products_id"
 end
