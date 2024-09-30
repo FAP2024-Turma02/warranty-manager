@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    before_action :authenticate_user!, only: [:index, :show, :update, :destroy]
+    before_action :authenticate_user!, except: :create
 
   def index
     @users = User.all
