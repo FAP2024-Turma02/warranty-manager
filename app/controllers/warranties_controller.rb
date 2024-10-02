@@ -15,8 +15,7 @@ class WarrantiesController < ApplicationController
   
   def warranty 
     @warranty ||= Warranty.find(params[:id])
-    @warranty
-  rescue ActiveRecord::RecordNotFound
+    rescue ActiveRecord::RecordNotFound
     render json: { error: 'Warranty not found' }, status: :not_found
   end
 end
