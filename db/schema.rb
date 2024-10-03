@@ -109,6 +109,5 @@ ActiveRecord::Schema[7.0].define(version: 2024_10_01_004909) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "warranties", "products"
   add_foreign_key "warranties", "products", column: "products_id"
 end
