@@ -126,6 +126,8 @@ GEM
     net-smtp (0.5.0)
       net-protocol
     nio4r (2.7.3)
+    nokogiri (1.16.7-x64-mingw-ucrt)
+      racc (~> 1.4)
     nokogiri (1.16.7-x86_64-linux)
       racc (~> 1.4)
     omniauth (1.9.2)
@@ -137,10 +139,13 @@ GEM
       ast (~> 2.4.1)
       racc
     pg (1.5.7)
+    pg (1.5.7-x64-mingw-ucrt)
     psych (5.1.2)
       stringio
     puma (5.6.9)
       nio4r (~> 2.0)
+    pundit (2.4.0)
+      activesupport (>= 3.0.0)
     racc (1.8.1)
     rack (2.2.9)
     rack-test (2.1.0)
@@ -201,6 +206,8 @@ GEM
     timeout (0.4.1)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    tzinfo-data (1.2024.2)
+      tzinfo (>= 1.0.0)
     unicode-display_width (2.6.0)
     warden (1.2.9)
       rack (>= 2.0.9)
@@ -210,6 +217,7 @@ GEM
     zeitwerk (2.6.18)
 
 PLATFORMS
+  x64-mingw-ucrt
   x86_64-linux
 
 DEPENDENCIES
@@ -220,7 +228,8 @@ DEPENDENCIES
   dotenv-rails
   omniauth (~> 1.9)
   pg (~> 1.1)
-  puma (~> 5.0)
+  puma (~> 5.6.9)
+  pundit (~> 2.4)
   rails (~> 7.0.8, >= 7.0.8.4)
   rubocop
   tzinfo-data
