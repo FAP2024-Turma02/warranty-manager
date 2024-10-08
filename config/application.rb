@@ -23,5 +23,8 @@ module WarrantyManager
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+    # Certifique-se de que não está tentando usar sessões em um ambiente API-only
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore
   end
 end

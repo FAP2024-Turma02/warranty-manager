@@ -14,6 +14,14 @@ gem 'puma', '~> 5.6.9'
 # Adição da gem pundit
 gem 'pundit', '~> 2.4'
 
+gem 'devise_token_auth'
+
+gem 'omniauth', '~> 1.9'
+
+gem 'devise_token_auth'
+
+gem 'omniauth', '~> 1.9'
+
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
 
