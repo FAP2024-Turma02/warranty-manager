@@ -6,4 +6,5 @@ class Invoice < ApplicationRecord
   validates :issue_date, presence: true
   validates :pdf, presence: true
 
+  has_many :product
 end
