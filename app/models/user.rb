@@ -1,7 +1,6 @@
 class User < ApplicationRecord
   include DeviseTokenAuth::Concerns::User
   has_many :invoices
-
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable, :lockable
   enum role: {user: 0, admin: 1}
 
