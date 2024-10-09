@@ -1,9 +1,7 @@
 class User < ApplicationRecord
-        include DeviseTokenAuth::Concerns::User
-        # Include default devise modules.
-        devise :database_authenticatable, :registerable,
-                :recoverable, :rememberable, :trackable, :validatable,
-                :confirmable
+                include DeviseTokenAuth::Concerns::User
+                # Include default devise modules.
+                devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable, :lockable
 
   enum role: {user: 0, admin: 1}
 
