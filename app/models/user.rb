@@ -3,8 +3,7 @@ class User < ApplicationRecord
   # Include default devise modules.
   devise :database_authenticatable, :registerable,
           :recoverable, :rememberable, :trackable, :validatable,
-          :confirmable
-  
+          :confirmable, :lockable
   has_many :invoices
   enum role: {user: 0, admin: 1}
 
