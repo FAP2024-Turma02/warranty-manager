@@ -5,27 +5,17 @@ class InvoicesController < ApplicationController
 
   def index
     @invoices = Invoice.all
-    render json: @invoices.map { |invoice| invoice_response(invoice) }
+    render json: @invoices.map { |invoice| InvoiceSerializer.new(invoice).serialize }
   end
 
   def show
-    render json: invoice_response(@invoice)
+    render json: InvoiceSerializer.new(@invoice).serialize
   end
 
   private
 
   def set_invoice
     @invoice = Invoice.find(params[:id])
-  end
-
-  def invoice_response(invoice)
-    {
-      id: invoice.id,
-      invoice_number: invoice.invoice_number,
-      purchase_date: invoice.purchase_date,
-      issue_date: invoice.issue_date,
-      pdf_url: url_for(invoice.pdf)
-    }
   end
 
   def record_not_found
