@@ -3,4 +3,5 @@ Rails.application.routes.draw do
 
   resources :invoices, only: [:index, :show]
   resources :warranties, only: [:index, :show]
+  resources :users, only: [:index, :show]
 end
