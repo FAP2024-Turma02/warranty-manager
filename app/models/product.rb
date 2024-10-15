@@ -4,4 +4,5 @@ class Product < ApplicationRecord
 
     has_many :warranty
     belongs_to :store
+    belongs_to :invoice
 end
