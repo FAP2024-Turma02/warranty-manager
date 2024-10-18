@@ -7,6 +7,5 @@ class Invoice < ApplicationRecord
   validates :purchase_date, presence: true
   validates :issue_date, presence: true
   validates :pdf, presence: true
-  validates :user_id, presence: true
-
+  validates :user_id
 end
