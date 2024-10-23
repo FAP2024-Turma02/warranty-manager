@@ -6,3 +6,4 @@ class ApplicationSerializer
       }
     end
   end
+  
