@@ -31,3 +31,13 @@
 
 en:
   hello: "Hello world"
+
+  seed:
+    users:
+      success: "User with email '%{email}' created successfully!"
+      already_exists: "User with email '%{email}' already exists."
+    invoices:
+      success: "Invoice '%{invoice_number}' created successfully!"
+      already_exists: "Invoice '%{invoice_number}' already exists."
+      error: "Error creating invoice: %{message}"
+    
