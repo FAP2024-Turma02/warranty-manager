@@ -40,4 +40,4 @@ en:
       success: "Invoice '%{invoice_number}' created successfully!"
       already_exists: "Invoice '%{invoice_number}' already exists."
       error: "Error creating invoice: %{message}"
-    
+   
