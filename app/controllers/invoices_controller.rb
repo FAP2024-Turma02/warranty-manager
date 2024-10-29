@@ -13,7 +13,9 @@ class InvoicesController < ApplicationController
   end
 
   def create
-    @invoice = Invoice.new(invoice_params)
+    @invoice = current_user.invoices.new(invoice_params)
+
+    authorize @invoice
 
     if @invoice.save
       render json: InvoiceSerializer.call(@invoice), status: :created
@@ -37,7 +39,7 @@ class InvoicesController < ApplicationController
   end
 
   def invoice_params
-    params.require(:invoice).permit(:invoice_number, :purchase_date, :issue_date, :pdf, :user_id)
+    params.require(:invoice).permit(:invoice_number, :purchase_date, :issue_date, :pdf)
   end
 
   def authorize_invoice
