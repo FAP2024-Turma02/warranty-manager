@@ -3,6 +3,6 @@ Rails.application.routes.draw do
 
   resources :invoices, only: [:index, :show]
   resources :warranties, only: [:index, :show]
-  resources :users, only: [:index, :show, :create, :update]
+  resources :users, only: [:index, :show]
   resources :stores, only: [:index, :show]
 end
