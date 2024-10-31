@@ -34,6 +34,7 @@ en:
 
   errors:
     not_found: "%{model} not found"
+    email_already_exists: "This email is already taken. Please use a different email."
   
   seed:
     users:
