@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
-  
+  before_action :authenticate_user!
+
   def index
-    @users = User.all
-    render json: @users
+    @users = policy_scope(User)
+    render json: @users.map { |user| UserSerializer.call(user) }
   end
 
   def show
