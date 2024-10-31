@@ -1,12 +1,12 @@
 class StoresController < ApplicationController
   before_action :set_store, only: :show
 
-    def index
+  def index
     @stores = Store.all
     render json: @stores
   end
 
-    def show
+  def show
     render json: @store
   end
 
