@@ -20,7 +20,8 @@ users_data.each do |user_data|
       uid: user_data[:email], 
       provider: 'email',
       role: user_data[:role],
-      admin: user_data[:admin]  
+      admin: user_data[:admin],
+      confirmed_at: Time.current  
     )
 
     if user.save
