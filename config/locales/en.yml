@@ -34,6 +34,7 @@ en:
 
   errors:
     not_found: "%{model} not found"
+    email_already_exists: "This email is already taken. Please use a different email."
   
   seed:
     users:
@@ -43,3 +44,11 @@ en:
       success: "Invoice '%{invoice_number}' created successfully!"
       already_exists: "Invoice '%{invoice_number}' already exists."
       error: "Error creating invoice: %{message}"
+  
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              taken: "This email is already taken. Please use a different email."
