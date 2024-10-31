@@ -40,7 +40,13 @@ en:
       update?: "You do not have permission to update this user."
       create?: "You do not have permission to create this user."
       destroy?: "You do not have permission to delete this user."
-  
+
+    invoice_policy:
+      show?: "You do not have permission to view this invoice."
+      update?: "You do not have permission to update this invoice."
+      create?: "You do not have permission to create this invoice."
+      destroy?: "You do not have permission to delete this invoice."
+
   seed:
     users:
       success: "User with email '%{email}' created successfully!"
