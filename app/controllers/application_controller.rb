@@ -5,21 +5,12 @@ class ApplicationController < ActionController::API
   include Pundit::Authorization
 
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
-  rescue_from ActiveRecord::RecordInvalid, with: :email_already_exists
 
   private
 
   def record_not_found(exception)
     model_name = exception.model.constantize.model_name.human
     render json: { error: I18n.t('errors.not_found', model: model_name) }, status: :not_found
-  end
-
-  def email_already_exists(exception)
-    if exception.record.errors.details[:email].any? { |error| error[:error] == :taken }
-      render json: { error: I18n.t('errors.email_already_exists') }, status: :unprocessable_entity
-    else
-      render json: { error: exception.message }, status: :unprocessable_entity
-    end
   end
 
   protected
