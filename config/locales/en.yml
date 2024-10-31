@@ -43,3 +43,7 @@ en:
       success: "Invoice '%{invoice_number}' created successfully!"
       already_exists: "Invoice '%{invoice_number}' already exists."
       error: "Error creating invoice: %{message}"
+    stores:
+      success: "Store '%{name}' created successfully!"
+      already_exists: "Store '%{name}' already exists."
+      error: "Error creating Store: %{message}"
