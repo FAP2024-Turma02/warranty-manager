@@ -34,6 +34,12 @@ en:
 
   errors:
     not_found: "%{model} not found"  
+    user_policy:
+      index?: "You do not have permission to view all users"
+      show?: "You do not have permission to view this user."
+      update?: "You do not have permission to update this user."
+      create?: "You do not have permission to create this user."
+      destroy?: "You do not have permission to delete this user."
   
   seed:
     users:
