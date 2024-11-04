@@ -53,3 +53,4 @@ en:
       success: "Store '%{name}' created successfully!"
       already_exists: "Store '%{name}' already exists."
       error: "Error creating Store: %{message}"
+  
