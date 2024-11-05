@@ -1,19 +1,36 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
 
   def index
-    @users = User.all
-    render json: @users
+    authorize User
+    @users = policy_scope(User)
+
+    render json: @users.map { |user| UserSerializer.call(user) }
   end
 
   def show
-    render json: user
+    authorize user
+
+    render json: UserSerializer.call(user)
   end
 
-  private 
+  def create
+    authorize user
+    @user = User.create!(permitted_attributes(User))
+
+    render json: UserSerializer.call(user), status: :created
+  end
+
+  def update
+    authorize user
+    user.update!(permitted_attributes(User))
+
+    render json: UserSerializer.call(user), status: :ok
+  end
+
+  private
 
   def user
     @user ||= User.find(params[:id])
-  rescue ActiveRecord::RecordNotFound
-    render json: { error: "User not found" }, status: :not_found
   end
 end

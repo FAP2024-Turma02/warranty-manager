@@ -1,0 +1,21 @@
+pt-BR:
+  hello: "Olá mundo"
+
+  errors:
+    not_found: "%{model} não encontrado"
+    user_policy:
+      index?: "Você não tem permissão para ver os usuários"
+      show?: "Você não tem permissão para visualizar esta invoice."
+      update?: "Você não tem permissão para atualizar esta invoice."
+      create?: "Você não tem permissão para criar esta invoice."
+      destroy?: "Você não tem permissão para excluir esta invoice."
+  
+  seed:
+    users:
+      success: "Usuário com e-mail '%{email}' criado com sucesso!"
+      already_exists: "Usuário com e-mail '%{email}' já existe."
+    invoices:
+      success: "Invoice '%{invoice_number}' criada com sucesso!"
+      already_exists: "Invoice '%{invoice_number}' já existe."
+      error: "Erro ao criar invoice: %{message}"
+  
