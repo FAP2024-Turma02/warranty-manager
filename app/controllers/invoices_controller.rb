@@ -13,7 +13,7 @@ class InvoicesController < ApplicationController
 
   def create
     @invoice = current_user.invoices.create(invoice_params)
-    authorize Invoice
+    authorize @invoice
     render json: InvoiceSerializer.call(@invoice), status: :created
   end
 
