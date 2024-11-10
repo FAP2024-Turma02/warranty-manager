@@ -1,5 +1,4 @@
 class InvoicesController < ApplicationController
-
   def index
     @invoices = policy_scope(Invoice)
     render json: @invoices.map { |invoice| InvoiceSerializer.call(invoice) }
@@ -22,6 +21,13 @@ class InvoicesController < ApplicationController
     authorize @invoice
     @invoice.update!(invoice_params)
     render json: InvoiceSerializer.call(@invoice), status: :ok
+  end
+
+  def destroy
+    @invoice = Invoice.find(params[:id])
+    authorize @invoice
+    @invoice.destroy
+    render_deletion_message('Invoice')
   end
 
   private
