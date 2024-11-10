@@ -1,35 +1,25 @@
 pt-BR:
-  hello: "Olá mundo"
+
+  default_messages:
+    deleted: "%{model} excluido(a)."
+
+  default_permission_errors:
+    show: "Você não tem permissão para ver este(a) %{model}."
+    update: "Você não tem permissão para atualizar este(a) %{model}."
+    create: "Você não tem permissão para criar este(a) %{model}."
+    destroy: "Você não tem permissão para excluir este(a) %{model}."
 
   errors:
-    not_found: "%{model} não encontrado"
+    not_found: "%{model} não encontrado(a)."
     user_policy:
       index?: "Você não tem permissão para ver os usuários"
       show?: "Você não tem permissão para visualizar esta invoice."
       update?: "Você não tem permissão para atualizar esta invoice."
       create?: "Você não tem permissão para criar esta invoice."
       destroy?: "Você não tem permissão para excluir esta invoice."
-  
-  seed:
-    users:
-      success: "Usuário com e-mail '%{email}' criado com sucesso!"
-      already_exists: "Usuário com e-mail '%{email}' já existe."
-    invoices:
-      success: "Invoice '%{invoice_number}' criada com sucesso!"
-      already_exists: "Invoice '%{invoice_number}' já existe."
-      error: "Erro ao criar invoice: %{message}"
-  pt-BR:
-  hello: "Olá mundo"
 
-  errors:
-    not_found: "%{model} não encontrado"
+  hello: "Olá mundo!"
 
-    invoice_policy:
-      show?: "Você não tem permissão para visualizar esta invoice."
-      update?: "Você não tem permissão para atualizar esta invoice."
-      create?: "Você não tem permissão para criar esta invoice."
-      destroy?: "Você não tem permissão para excluir esta invoice."
-      
   seed:
     users:
       success: "Usuário com e-mail '%{email}' criado com sucesso!"

@@ -30,22 +30,26 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+
+  default_messages:
+    deleted: "%{model} deleted."
+
+  default_permission_errors:
+    show: "You do not have permission to view this %{model}."
+    update: "You do not have permission to update this %{model}."
+    create: "You do not have permission to create this %{model}."
+    destroy: "You do not have permission to delete this %{model}."
 
   errors:
-    not_found: "%{model} not found"  
+    not_found: "%{model} not found."
     user_policy:
       index?: "You do not have permission to view all users"
       show?: "You do not have permission to view this user."
       update?: "You do not have permission to update this user."
       create?: "You do not have permission to create this user."
-      destroy?: "You do not have permission to delete this user."
+      destroy?: "You do not have permission to delete this user." 
 
-    invoice_policy:
-      show?: "You do not have permission to view this invoice."
-      update?: "You do not have permission to update this invoice."
-      create?: "You do not have permission to create this invoice."
-      destroy?: "You do not have permission to delete this invoice."
+  hello: "Hello world!"
 
   seed:
     users:
@@ -54,9 +58,8 @@ en:
     invoices:
       success: "Invoice '%{invoice_number}' created successfully!"
       already_exists: "Invoice '%{invoice_number}' already exists."
-      error: "Error creating invoice: %{message}"
+      error: "Error creating invoice: %{message}."
     stores:
       success: "Store '%{name}' created successfully!"
       already_exists: "Store '%{name}' already exists."
       error: "Error creating Store: %{message}"
-  
