@@ -13,4 +13,12 @@ class ApplicationController < ActionController::API
     devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :password, :password_confirmation, :name])
     devise_parameter_sanitizer.permit(:account_update, keys: [:email, :password, :password_confirmation, :name])
   end
+
+  def render_success(resource, status: :ok)
+    render json: resource, status: status
+  end
+  
+  def render_failure(resource, status: :unprocessable_entity)
+    render json: resource.errors, status: status
+  end
 end
