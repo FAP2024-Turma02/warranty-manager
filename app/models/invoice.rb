@@ -8,5 +8,4 @@ class Invoice < ApplicationRecord
   validates :issue_date, presence: true
   validates :pdf, presence: true
   validates :user_id, presence: true
-
 end

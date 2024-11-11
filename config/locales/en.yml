@@ -31,3 +31,19 @@
 
 en:
   hello: "Hello world"
+
+  errors:
+    not_found: "%{model} not found"
+  
+  seed:
+    users:
+      success: "User with email '%{email}' created successfully!"
+      already_exists: "User with email '%{email}' already exists."
+    invoices:
+      success: "Invoice '%{invoice_number}' created successfully!"
+      already_exists: "Invoice '%{invoice_number}' already exists."
+      error: "Error creating invoice: %{message}"
+    stores:
+      success: "Store '%{name}' created successfully!"
+      already_exists: "Store '%{name}' already exists."
+      error: "Error creating Store: %{message}"
