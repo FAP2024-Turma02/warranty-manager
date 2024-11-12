@@ -13,7 +13,7 @@ invoice_numbers.each do |invoice_number|
       user_id: user.id
     )
 
-    pdf_path = Rails.root.join('tmp', 'invoice.pdf')
+    pdf_path = Rails.root.join('lib', 'assets','invoice.pdf')
 
     if File.exist?(pdf_path)
       invoice.pdf.attach(io: File.open(pdf_path), filename: 'invoice.pdf', content_type: 'application/pdf')
