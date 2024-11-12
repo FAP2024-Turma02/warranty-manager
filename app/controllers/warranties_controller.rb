@@ -5,29 +5,29 @@ class WarrantiesController < ApplicationController
   end
 
   def show
-    authorize @warranty
+    authorize warranty
     render json: WarrantySerializer.call(@warranty)
   end
 
   def update
-    authorize @warranty
+    authorize warranty
     render json: @warranty.update(warranty_params) ? WarrantySerializer.call(@warranty) : { errors: @warranty.errors.full_messages },
     status: @warranty.errors.any? ? :unprocessable_entity : :ok
   end
 
   def create
-    @warranty = Warranty.new(warranty_params)
+    warranty = Warranty.new(warranty_params)
     authorize @warranty # Garantir que o usuário tem permissão para criar uma warranty.
 
-    @warranty.save ?
+    warranty.save ?
       render(json: WarrantySerializer.call(@warranty), status: :created) :
       render(json: { errors: @warranty.errors.full_messages }, status: :unprocessable_entity)
   end
 
   def destroy
-    authorize @warranty # Garantir que o usuário tem permissão para excluir a warranty
+    authorize warranty 
 
-    @warranty.destroy ? head(:no_content) : render(json: { error: 'Failed to delete warranty' }, status: :unprocessable_entity)
+    warranty.destroy ? head(:no_content) : render(json: { error: 'Failed to delete warranty' }, status: :unprocessable_entity)
   end
 
   private
