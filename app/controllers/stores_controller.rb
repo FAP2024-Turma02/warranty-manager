@@ -6,31 +6,37 @@ class StoresController < ApplicationController
   end
 
   def show
-    @store = Store.find(params[:id])
-    authorize @store
+    authorize store
+
     render_success(StoreSerializer.call(@store))
   end
 
   def create
-    @store = Store.new(store_params)
-    authorize @store
-    @store.save ? render_success(StoreSerializer.call(@store), status: :created) : render_failure(@store)
+    authorize Store
+    @store = Store.create(store_params)
+
+    render_success(StoreSerializer.call(@store), status: :created)
   end
 
   def update
-    @store = Store.find(params[:id])
-    authorize @store
-    @store.update(store_params) ? render_success(StoreSerializer.call(@store)) : render_failure(@store)
+    authorize store
+    store.update(store_params)
+    
+    render_success(StoreSerializer.call(@store))
   end
 
   def destroy
-    @store = Store.find(params[:id])
-    authorize @store
-    @store.destroy
+    authorize store
+    store.destroy
+    
     head :no_content
   end
 
   private
+
+  def store
+    @store ||= Store.find(params[:id])
+  end
 
   def store_params
     params.require(:store).permit(:name, :address, :contact)
