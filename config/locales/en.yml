@@ -70,4 +70,12 @@ en:
     stores:
       success: "Store '%{name}' created successfully!"
       already_exists: "Store '%{name}' already exists."
-      error: "Error creating Store: %{message}."
+      error: "Error creating Store: %{message}"
+    products:
+      success: "Product with serial number %{serial_number} was created successfully."
+      already_exists: "Product with serial number %{serial_number} already exists."
+      error: "Error creating product: %{message}"
+    warranties:
+      success: "Warranty with number %{warranty_number} was created successfully."
+      already_exists: "Warranty with number %{warranty_number} already exists."
+      error: "Error creating warranty: %{message}"
