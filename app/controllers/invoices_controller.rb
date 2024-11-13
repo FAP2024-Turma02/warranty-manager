@@ -20,7 +20,7 @@ class InvoicesController < ApplicationController
 
   def update
     authorize invoice
-    @invoice.update!(invoice_params)
+    invoice.update(invoice_params)
 
     render json: InvoiceSerializer.call(@invoice), status: :ok
   end
