@@ -3,11 +3,13 @@
 class ApplicationPolicy
   attr_reader :user, :record
 
+  # Inicializa com o usuário atual e o registro ou escopo sendo acessado
   def initialize(user, record)
     @user = user
     @record = record
   end
 
+  # Permissões padrão negadas
   def index?
     false
   end
@@ -20,6 +22,7 @@ class ApplicationPolicy
     false
   end
 
+  # Aliases para new e edit
   def new?
     create?
   end
@@ -36,6 +39,7 @@ class ApplicationPolicy
     false
   end
 
+  # Classe Scope que exige definição de resolve em subclasses
   class Scope
     def initialize(user, scope)
       @user = user
