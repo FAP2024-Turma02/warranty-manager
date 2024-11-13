@@ -13,10 +13,10 @@ pt-BR:
     not_found: "%{model} não encontrado(a)."
     user_policy:
       index?: "Você não tem permissão para ver os usuários"
-      show?: "Você não tem permissão para visualizar esta invoice."
-      update?: "Você não tem permissão para atualizar esta invoice."
-      create?: "Você não tem permissão para criar esta invoice."
-      destroy?: "Você não tem permissão para excluir esta invoice."
+      show?: "Você não tem permissão para visualizar este usuário."
+      update?: "Você não tem permissão para atualizar este usuário."
+      create?: "Você não tem permissão para criar este usuário."
+      destroy?: "Você não tem permissão para excluir este usuário."
 
   hello: "Olá mundo!"
 
@@ -27,4 +27,8 @@ pt-BR:
     invoices:
       success: "Invoice '%{invoice_number}' criada com sucesso!"
       already_exists: "Invoice '%{invoice_number}' já existe."
-      error: "Erro ao criar invoice: %{message}"
+      error: "Erro ao criar invoice: %{message}."
+    stores:
+      success: "Loja '%{name}' criada com sucesso!"
+      already_exists: "A loja '%{name}' já existe."
+      error: "Erro ao criar a loja: %{message}."
