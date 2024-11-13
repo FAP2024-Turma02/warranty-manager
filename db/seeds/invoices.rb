@@ -1,15 +1,19 @@
-# db/seeds/invoices.rb
+puts "Seeding Invoices..."
+
 users_with_invoices = User.limit(7)
-invoice_numbers = (1..100).map { |i| "INV#{i.to_s.rjust(4, '0')}" }
+invoice_numbers = (1..50).map { |i| "INV#{i.to_s.rjust(4, '0')}" }
 
 invoice_numbers.each do |invoice_number|
   unless Invoice.exists?(invoice_number: invoice_number)
     user = users_with_invoices.sample
 
+    purchase_date = Date.today - rand(10..30)
+    issue_date = purchase_date + rand(0..1)
+
     invoice = Invoice.new(
       invoice_number: invoice_number,
-      purchase_date: Date.today - rand(10..30),
-      issue_date: Date.today - rand(5..9),
+      purchase_date: purchase_date,
+      issue_date: issue_date,
       user_id: user.id
     )
 

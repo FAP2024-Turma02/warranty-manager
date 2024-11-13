@@ -1,3 +1,5 @@
+puts "Seeding Users..."
+
 users_data = [
   { name: 'Joao Ninguem', email: 'zeninguem@example.com', password: 'password', role: 'admin', admin: 1 },
   { name: 'Jose Lezim', email: 'zelezim@example.com', password: 'password', role: 'user', admin: 0 },

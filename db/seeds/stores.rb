@@ -1,3 +1,5 @@
+puts "Seeding Stores..."
+
 stores_data = [
   {name:"Grillo", contact:"grillo@gmail.com", address:"Rua Qualquer, 50, Centro, Recife-PE"},
   {name:"Cobasi", contact:"cobasi@gmail.com", address:"Rua Alvorada, 89, Matriz, Caruaru-PE"},
