@@ -2,6 +2,8 @@ class WarrantiesController < ApplicationController
   def index
     @warranties = policy_scope(Warranty) # Usa o Pundit para filtrar os registros que o usuário pode acessar
     render json: @warranties.map { |warranty| WarrantySerializer.call(warranty) }
+    @warranties = policy_scope(Warranty) # Usa o Pundit para filtrar os registros que o usuário pode acessar
+    render json: @warranties.map { |warranty| WarrantySerializer.call(warranty) }
   end
 
   def show
@@ -33,9 +35,14 @@ class WarrantiesController < ApplicationController
   private
 
   def warranty
+  def warranty
     @warranty ||= Warranty.find(params[:id])
   rescue ActiveRecord::RecordNotFound
     render json: { error: 'Warranty not found' }, status: :not_found
+  end
+
+  def warranty_params
+    params.require(:warranty).permit(:field1, :field2, :field3) # Substitua por os campos reais da sua warranty
   end
 
   def warranty_params
