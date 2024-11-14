@@ -1,39 +1,39 @@
 class WarrantyPolicy < ApplicationPolicy
   class Scope < ApplicationPolicy::Scope
     def resolve
-      if product.admin?
+      if user.admin?
         scope.all
       else
-        scope.where(product_id: product.id)
+        scope.where(product_id: user.product_id)  # Ajuste para refletir a associação correta
       end
     end
 
     def index?
-      product.admin?
+      user.admin?
     end
 
     def show?
-      product.admin? || record.product_id == product.id
+      user.admin? || record.product_id == user.product_id
     end
 
     def create?
-      product.present?
+      user.present?
     end
 
     def update?
-      if product.admin?
+      if user.admin?
         true
       else
-        product.role == 'product' && record.product_id == product.id
+        user.role == 'product' && record.product_id == user.product_id
       end
     end
 
     def destroy?
-      product.admin?
+      user.admin?
     end
 
     def permitted_attributes
-      [:warranty_number, :issue_date, :expirity_date, :role, :admin, :validity_period, { presence: true }]
+      [:warranty_number, :issue_date, :expirity_date, :role, :admin, :validity_period]
     end
   end
 end
