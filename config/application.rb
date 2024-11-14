@@ -28,5 +28,8 @@ module WarrantyManager
     config.api_only = true
     config.middleware.use ActionDispatch::Session::CookieStore, key: '_warranty_manager_session'
 
+    # Internationalization (I18n) Configuration
+    config.i18n.default_locale = :en
+    config.i18n.available_locales = [:en, :'pt-BR']
   end
 end
