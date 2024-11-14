@@ -3,7 +3,7 @@ class User < ApplicationRecord
  has_many :invoices
  
  devise :database_authenticatable, :registerable, :recoverable,
-        :rememberable, :validatable, :confirmable, :lockable
+        :rememberable, :validatable, :lockable
   
  enum role: {user: 0, admin: 1}  
 
