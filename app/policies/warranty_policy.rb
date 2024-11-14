@@ -1,35 +1,35 @@
 class WarrantyPolicy < ApplicationPolicy
   class Scope < ApplicationPolicy::Scope
     def resolve
-      if user.admin?
+      if product.admin?
         scope.all
       else
-        scope.where(user_id: user.id)
+        scope.where(product_id: product.id)
       end
     end
 
     def index?
-      user.admin?
+      product.admin?
     end
 
     def show?
-      user.admin? || record.user_id == user.id
+      product.admin? || record.product_id == product.id
     end
 
     def create?
-      user.present?
+      product.present?
     end
 
     def update?
-      if user.admin?
+      if product.admin?
         true
       else
-        user.role == 'user' && record.user_id == user.id
+        product.role == 'product' && record.product_id == product.id
       end
     end
 
     def destroy?
-      user.admin?
+      product.admin?
     end
 
     def permitted_attributes
