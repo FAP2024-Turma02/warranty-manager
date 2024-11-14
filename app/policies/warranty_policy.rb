@@ -4,7 +4,7 @@ class WarrantyPolicy < ApplicationPolicy
   end
 
   def show?
-    user.admin? || record.product_id == user.product_id
+    user.admin? || user.products.exists?(id: record.product_id)
   end
 
   def create?
@@ -15,7 +15,7 @@ class WarrantyPolicy < ApplicationPolicy
     if user.admin?
       true
     else
-      user.role == 'product' && record.product_id == user.product_id
+      user.role == 'product' && user.products.exists?(id: record.product_id)
     end
   end
 
