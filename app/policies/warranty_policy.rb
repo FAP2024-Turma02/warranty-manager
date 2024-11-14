@@ -34,7 +34,5 @@ class WarrantyPolicy < ApplicationPolicy
       else
         scope.where(product_id: user.product_id)  # Ajuste para refletir a associação correta
       end
-    end
-
-
+  end
 end
