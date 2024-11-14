@@ -32,7 +32,8 @@ class WarrantyPolicy < ApplicationPolicy
       if user.admin?
         scope.all
       else
-        scope.where(product_id: user.product_id)  # Ajuste para refletir a associação correta
+        scope.where(product_id: user.product_id)
       end
+    end
   end
 end
