@@ -1,26 +1,37 @@
 class ProductsController < ApplicationController
   def index
-    @product = Product.all
-    render json: @product
+    @product = policy_scope(Product)
+
+    render json: @product.map { |product| ProductSerializer.call(product) }
   end
-  
+
   def show
-    render json: product
+    authorize product
+
+    render json: ProductSerializer.call(product)
   end
   
   def create
-    @product = Product.create(product_params)
-    render json: { status: 'success', message: 'Produto criado com sucesso', data: @product }, status: :created
+    @product = Product.new(permitted_attributes(Product.new)) # Passa uma nova instância para `permitted_attributes`
+    authorize @product
+
+    @product.save!
+    render json: ProductSerializer.call(@product), status: :created
   end
   
+  
   def update
-    product.update!(product_params)
-    render json: { status: 'success', message: 'Produto atualizado com sucesso', data: @product }, status: :ok
+    authorize product
+
+    product.update!(permitted_attributes(product)) # Bloqueia `invoice_id` na atualização
+    render json: { status: 'success', message: 'Produto atualizado com sucesso', data: product }, status: :ok
   end
 
   def destroy
+    authorize product
+
     product.destroy
-    head :no_content
+    render_deletion_message('Product')
   end
   
   private
@@ -29,7 +40,4 @@ class ProductsController < ApplicationController
     @product ||= Product.find(params[:id])
   end
 
-  def product_params
-    params.require(:product).permit(:name, :price, :serial_number, :warranty_expiry_date, :invoice_id, :store_id)
-  end
 end
