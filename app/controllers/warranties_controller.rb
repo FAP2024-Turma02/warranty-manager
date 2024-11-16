@@ -10,9 +10,8 @@ class WarrantiesController < ApplicationController
   end
 
   def create
-    authorize warranty
     @warranty = Warranty.new(permitted_attributes(Warranty.new))
-    @warranty.product = Product.find(params[:product_id])
+    authorize @warranty 
     @warranty.save!
     render json: WarrantySerializer.call(@warranty), status: :created
   end
