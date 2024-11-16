@@ -1,11 +1,11 @@
 class WarrantyPolicy < ApplicationPolicy
     # Regra padrão para todos os métodos
     def index?
-      true # Permite listar garantias para todos os usuários autenticados
+      user.admin? || user_has_access_to_product?
     end
   
     def show?
-      user_has_access_to_warranty?
+      user.admin? || user_has_access_to_product?
     end
   
     def create?
@@ -25,26 +25,30 @@ class WarrantyPolicy < ApplicationPolicy
         if user.admin?
           scope.all
         else
-          scope.joins(:product).where(products: { user_id: user.id }) 
+          scope.joins(product: :invoice).where(invoices: { user_id: user.id })
         end
+      end
+    end
+
+    def permitted_attributes
+      if record.new_record? # Verifica se é uma criação
+        [:warranty_number, :issue_date, :expirity_date, :validity_period, :product_id, :active]
+      else # Se não for criação, é atualização
+        [:warranty_number, :issue_date, :expirity_date, :validity_period, :active]
       end
     end
   
     private
   
     def user_has_access_to_warranty?
-      # Verifica se o usuário tem acesso à garantia associada ao produto
-      record.product.user == user
+      record.product.invoice.user == user
     end
   
     def user_owns_warranty?
-      # Garante que o usuário seja dono do produto ao qual a garantia está associada
-      record.product.user == user
+      record.product.invoice.user == user
     end
   
     def user_has_access_to_product?
-      # Verifica se o usuário tem permissão para acessar o produto relacionado
-      record.product.present? && record.product.user == user
+      record.product.present? && record.product.invoice.user == user
     end
   end
-  
