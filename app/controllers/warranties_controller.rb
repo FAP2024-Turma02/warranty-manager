@@ -1,21 +1,37 @@
 class WarrantiesController < ApplicationController
-
-  # Lista todas as warranties
   def index
-    @warranties = Warranty.all
-    render json: @warranties
+    @warranties = policy_scope(Warranty)
+    render json: @warranties.map { |warranty| WarrantySerializer.call(warranty) }
   end
 
-  # Exibe uma warranty específica
   def show
-    render json: warranty
+    authorize warranty
+    render json: WarrantySerializer.call(warranty)
+  end
+
+  def create
+    authorize warranty
+    @warranty = Warranty.new(permitted_attributes(Warranty.new))
+    @warranty.product = Product.find(params[:product_id])
+    @warranty.save!
+    render json: WarrantySerializer.call(@warranty), status: :created
+  end
+
+  def update
+    authorize warranty
+    warranty.update!(permitted_attributes(warranty))
+    render json: { status: 'success', message: 'Garantia atualizada com sucesso', data: warranty }, status: :ok
+  end
+
+  def destroy
+    authorize warranty
+    warranty.destroy
+    render_deletion_message('Warranty')
   end
 
   private
 
-  def warranty 
+  def warranty
     @warranty ||= Warranty.find(params[:id])
-  rescue ActiveRecord::RecordNotFound
-    render json: { error: 'Warranty not found' }, status: :not_found
   end
 end
