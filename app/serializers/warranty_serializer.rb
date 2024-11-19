@@ -13,5 +13,5 @@ class WarrantySerializer
         updated_at: warranty.updated_at
       }
     end
-  end
+end
   
