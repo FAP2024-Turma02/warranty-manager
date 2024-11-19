@@ -12,7 +12,7 @@ class ProductsController < ApplicationController
   end
   
   def create
-    @product = Product.new(permitted_attributes(Product.new)) # Passa uma nova instância para `permitted_attributes`
+    @product = Product.new(permitted_attributes(Product.new))
     authorize @product
 
     @product.save!
