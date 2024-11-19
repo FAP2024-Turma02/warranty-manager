@@ -25,7 +25,7 @@ class WarrantiesController < ApplicationController
   def destroy
     authorize warranty
     warranty.destroy
-    render_deletion_message('Warranty')
+    head :no_content
   end
 
   private
