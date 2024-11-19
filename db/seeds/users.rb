@@ -1,16 +1,16 @@
-puts "Seeding Users..."
 
+puts "Seeding Users..."
 users_data = [
-  { name: 'Joao Ninguem', email: 'zeninguem@example.com', password: 'password', role: 'admin', admin: 1 },
-  { name: 'Jose Lezim', email: 'zelezim@example.com', password: 'password', role: 'user', admin: 0 },
-  { name: 'Marina Morena', email: 'marmoreninha@example.com', password: 'password', role: 'user', admin: 0 },
-  { name: 'Bob Esponja', email: 'bob.squarepants@example.com', password: 'password', role: 'user', admin: 0 },
-  { name: 'Josefa Barbosa', email: 'zefinha@example.com', password: 'password', role: 'user', admin: 0 },
-  { name: 'Frederico Evandro', email: 'vela.libra@example.com', password: 'password', role: 'admin', admin: 1 },
-  { name: 'Sivirino Valentin', email: 'biu@example.com', password: 'password', role: 'user', admin: 0 },
-  { name: 'Raimunda Ferreira', email: 'mundica@example.com', password: 'password', role: 'user', admin: 1 },
-  { name: 'Manuel da Silva', email: 'maned@example.com', password: 'password', role: 'admin', admin: 0 },
-  { name: 'Eduardo Costa', email: 'du.dudu.edu@example.com', password: 'password', role: 'admin', admin: 1 }
+  { name: 'Joao Borbosa', email: 'jbarbosa@example.com', password: 'password', role: 'admin', admin: 1 },
+  { name: 'Jose de Arimateia', email: 'jarimateia@example.com', password: 'password', role: 'user', admin: 0 },
+  { name: 'Marina Aragao', email: 'maragao@example.com', password: 'password', role: 'user', admin: 0 },
+  { name: 'Roberto Freitas', email: 'rfreitas@example.com', password: 'password', role: 'user', admin: 0 },
+  { name: 'Josefa Perreira', email: 'jperreira@example.com', password: 'password', role: 'user', admin: 0 },
+  { name: 'Frederico Evandro', email: 'fevandro@example.com', password: 'password', role: 'admin', admin: 1 },
+  { name: 'Sivirino Valentin', email: 'svalentin@example.com', password: 'password', role: 'user', admin: 0 },
+  { name: 'Raimunda Ferreira', email: 'rferreira@example.com', password: 'password', role: 'user', admin: 1 },
+  { name: 'Manuel da Silva', email: 'msilva@example.com', password: 'password', role: 'admin', admin: 0 },
+  { name: 'Eduardo Costa', email: 'ecosta@example.com', password: 'password', role: 'admin', admin: 1 }
 ]
 
 users_data.each do |user_data|
