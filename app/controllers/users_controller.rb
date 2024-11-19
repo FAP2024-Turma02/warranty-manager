@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     authorize user
     user.destroy
 
-    render_deletion_message('User')
+    head :no_content
   end
 
   private
