@@ -1,5 +1,5 @@
 class WarrantyPolicy < ApplicationPolicy
-    # Regra padrão para todos os métodos
+  
     def index?
       user.admin? || user_has_access_to_product?
     end
@@ -51,4 +51,4 @@ class WarrantyPolicy < ApplicationPolicy
     def user_has_access_to_product?
       record.product.present? && record.product.invoice.user == user
     end
-  end
+end
