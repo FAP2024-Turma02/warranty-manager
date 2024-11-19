@@ -21,14 +21,14 @@ class StoresController < ApplicationController
   def update
     authorize store
     store.update(store_params)
-    
+
     render_success(StoreSerializer.call(@store))
   end
 
   def destroy
     authorize store
     store.destroy
-    
+
     head :no_content
   end
 
