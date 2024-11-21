@@ -31,11 +31,7 @@ class ProductPolicy < ApplicationPolicy
   end
 
   def permitted_attributes
-    if record.new_record? # Verifica se é uma criação
-      [:name, :description, :category, :price, :serial_number, :warranty_expiry_date, :store_id, :invoice_id]
-    else # Se não for criação, não passa o invoice_id
-      [:name, :description, :category, :price, :serial_number, :warranty_expiry_date, :store_id]
-    end
+    [:name, :description, :category, :price, :serial_number, :warranty_expiry_date, :store_id, :invoice_id]
   end
 
   private

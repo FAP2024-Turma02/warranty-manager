@@ -23,7 +23,9 @@ class ProductsController < ApplicationController
   def update
     authorize product
 
-    product.update!(permitted_attributes(product)) # Bloqueia `invoice_id` na atualização
+    attributes = permitted_attributes(product).except(:invoice_id)
+
+    product.update!(attributes)
     render json: { status: 'success', message: 'Produto atualizado com sucesso', data: product }, status: :ok
   end
 
