@@ -1,20 +1,44 @@
 class StoresController < ApplicationController
-  before_action :set_store, only: :show
-
   def index
-    @stores = Store.all
-    render json: @stores
+    @stores = policy_scope(Store)
+    authorize @stores
+    render_success(@stores.map { |store| StoreSerializer.call(store) })
   end
 
   def show
-    render json: @store
+    authorize store
+
+    render_success(StoreSerializer.call(@store))
+  end
+
+  def create
+    authorize Store
+    @store = Store.create(store_params)
+
+    render_success(StoreSerializer.call(@store), status: :created)
+  end
+
+  def update
+    authorize store
+    store.update(store_params)
+
+    render_success(StoreSerializer.call(@store))
+  end
+
+  def destroy
+    authorize store
+    store.destroy
+
+    head :no_content
   end
 
   private
 
-  def set_store
-    @store = Store.find(params[:id])
-  rescue ActiveRecord::RecordNotFound
-    render json: { error: "Store not found" }, status: :not_found
+  def store
+    @store ||= Store.find(params[:id])
+  end
+
+  def store_params
+    params.require(:store).permit(:name, :address, :contact)
   end
 end

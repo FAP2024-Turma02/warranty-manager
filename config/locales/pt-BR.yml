@@ -32,3 +32,11 @@ pt-BR:
       success: "Loja '%{name}' criada com sucesso!"
       already_exists: "A loja '%{name}' já existe."
       error: "Erro ao criar a loja: %{message}."
+    products:
+      success: "Produto com número de série %{serial_number} foi criado com sucesso."
+      already_exists: "Produto com número de série %{serial_number} já existe."
+      error: "Erro ao criar produto: %{message}"
+    warranties:
+      success: "Garantia com número %{warranty_number} foi criada com sucesso."
+      already_exists: "Garantia com número %{warranty_number} já existe."
+      error: "Erro ao criar garantia: %{message}"

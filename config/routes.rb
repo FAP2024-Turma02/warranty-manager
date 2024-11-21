@@ -3,8 +3,8 @@ Rails.application.routes.draw do
 
   resources :invoices, only: [:index, :show, :create, :update, :destroy]
   resources :warranties, only: [:index, :show]
-  resources :users, only: [:index, :show, :create, :update]
-  resources :stores, only: [:index, :show]
+  resources :users, only: [:index, :show, :create, :update, :destroy]
+  resources :stores, only: [:index, :show, :create, :update, :destroy]
   resources :products, only: [:index, :show, :create, :update, :destroy]
-  
+
 end
