@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   resources :warranties, only: [:index, :show]
   resources :users, only: [:index, :show, :create, :update, :destroy]
   resources :stores, only: [:index, :show, :create, :update, :destroy]
+  resources :products, only: [:index, :show, :create, :update, :destroy]
+
 end
