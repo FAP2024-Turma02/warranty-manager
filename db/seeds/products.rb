@@ -1,4 +1,4 @@
-puts "Seeding Products..."
+puts 'Seeding Products...'
 
 stores = Store.all
 invoices = Invoice.all
@@ -23,24 +23,24 @@ products_data = (1..100).map do |i|
   {
     name: "Produto #{i}",
     description: "Descrição do produto #{i}",
-    category: category,
+    category:,
     price: rand(10..1000).to_f,
     serial_number: "#{i.to_s.rjust(15, '0')}",
     warranty_expiry_date: invoice.issue_date + warranty_period.months,
     store: stores.sample,
-    invoice: invoice
+    invoice:
   }
 end
 
 products_data.each do |product_data|
-  unless Product.exists?(serial_number: product_data[:serial_number])
+  if Product.exists?(serial_number: product_data[:serial_number])
+    puts I18n.t('seed.products.already_exists', serial_number: product_data[:serial_number])
+  else
     product = Product.new(product_data)
     if product.save
       puts I18n.t('seed.products.success', serial_number: product.serial_number)
     else
       puts I18n.t('seed.products.error', message: product.errors.full_messages.join(', '))
     end
-  else
-    puts I18n.t('seed.products.already_exists', serial_number: product_data[:serial_number])
   end
 end

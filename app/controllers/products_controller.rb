@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
 
     render json: ProductSerializer.call(product)
   end
-  
+
   def create
     @product = Product.new(permitted_attributes(Product.new))
     authorize @product
@@ -18,8 +18,7 @@ class ProductsController < ApplicationController
     @product.save!
     render json: ProductSerializer.call(@product), status: :created
   end
-  
-  
+
   def update
     authorize product
 
@@ -35,11 +34,10 @@ class ProductsController < ApplicationController
     product.destroy
     render_deletion_message('Product')
   end
-  
+
   private
 
   def product
     @product ||= Product.find(params[:id])
   end
-
 end

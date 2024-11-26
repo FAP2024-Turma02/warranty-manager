@@ -1,5 +1,4 @@
-
-puts "Seeding Users..."
+puts 'Seeding Users...'
 users_data = [
   { name: 'Joao Borbosa', email: 'jbarbosa@example.com', password: 'password', role: 'admin', admin: 1 },
   { name: 'Jose de Arimateia', email: 'jarimateia@example.com', password: 'password', role: 'user', admin: 0 },
@@ -14,16 +13,18 @@ users_data = [
 ]
 
 users_data.each do |user_data|
-  unless User.exists?(email: user_data[:email])
+  if User.exists?(email: user_data[:email])
+    puts I18n.t('seed.users.already_exists', email: user_data[:email])
+  else
     user = User.new(
       email: user_data[:email],
       name: user_data[:name],
       password: user_data[:password],
-      uid: user_data[:email], 
+      uid: user_data[:email],
       provider: 'email',
       role: user_data[:role],
       admin: user_data[:admin],
-      confirmed_at: Time.current  
+      confirmed_at: Time.current
     )
 
     if user.save
@@ -31,7 +32,5 @@ users_data.each do |user_data|
     else
       puts I18n.t('seed.users.error', message: user.errors.full_messages.join(', '))
     end
-  else
-    puts I18n.t('seed.users.already_exists', email: user_data[:email])
   end
 end
