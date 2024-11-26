@@ -1,8 +1,9 @@
 class ProductsController < ApplicationController
   def index
-    @product = policy_scope(Product)
-
-    render json: @product.map { |product| ProductSerializer.call(product) }
+    @q = policy_scope(Product).ransack(params[:q])
+    @products = @q.result(distinct: true).order(id: :asc)
+    
+    render json: @products.map { |product| ProductSerializer.call(product) }
   end
 
   def show

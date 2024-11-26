@@ -1,8 +1,9 @@
 class StoresController < ApplicationController
   def index
-    @stores = policy_scope(Store)
-    authorize @stores
-    render_success(@stores.map { |store| StoreSerializer.call(store) })
+    @q = policy_scope(Store).ransack(params[:q])
+    @stories = @q.result(distinct: true).order(id: :asc)
+    
+    render json: @stories.map { |store| StoreSerializer.call(store) }
   end
 
   def show

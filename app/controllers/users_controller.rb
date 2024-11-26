@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   def index
-    authorize User
-    @users = policy_scope(User)
-
+    @q = policy_scope(User).ransack(params[:q])
+    @users = @q.result.order(id: :asc).uniq
+        
     render json: @users.map { |user| UserSerializer.call(user) }
   end
 
