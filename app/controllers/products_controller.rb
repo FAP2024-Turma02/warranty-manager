@@ -25,14 +25,14 @@ class ProductsController < ApplicationController
     attributes = permitted_attributes(product).except(:invoice_id)
 
     product.update!(attributes)
-    render json: { status: 'success', message: 'Produto atualizado com sucesso', data: product }, status: :ok
+    render json: ProductSerializer.call(product), status: :ok
   end
 
   def destroy
     authorize product
 
     product.destroy
-    render_deletion_message('Product')
+    head :no_content
   end
 
   private

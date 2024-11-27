@@ -39,5 +39,4 @@ class ProductPolicy < ApplicationPolicy
   def user_has_access_to_products?
     user.invoices.joins(:products).exists?
   end
-
 end

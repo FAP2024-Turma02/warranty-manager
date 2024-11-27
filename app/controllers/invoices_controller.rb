@@ -29,7 +29,7 @@ class InvoicesController < ApplicationController
     authorize invoice
     invoice.destroy
 
-    render_deletion_message('Invoice')
+    head :no_content
   end
 
   private
