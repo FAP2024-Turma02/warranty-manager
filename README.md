@@ -9,7 +9,7 @@ Esta documentação descreve os endpoints da API para o sistema.
 
 ### Autenticação do Usuário
 
-**Descrição:** ## Descrição da Requisição
+**Descrição:** Descrição da Requisição
 
 Esta requisição é responsável por solicitar um token de autenticação para um usuário. O usuário pode ser um usuário comum ou um administrador, dependendo de suas permissões.
 
