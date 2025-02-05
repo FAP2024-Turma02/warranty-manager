@@ -1,196 +1,128 @@
-# API Documentation - Warranty Management
+# 📦 Warranty Management API
 
-## **1. Autenticação do Usuário**
+API para gerenciamento de usuários, notas fiscais, produtos, garantias e lojas. Suporta autenticação via token, operações CRUD e filtros avançados com Ransack.
 
-### **Login**
-- **Endpoint:** `POST /auth/sign_in`
-- **Descrição:** Autentica o usuário com e-mail e senha, retornando tokens de autenticação para acesso aos recursos protegidos da API.
-- **Headers:**
-  - `Content-Type: application/json`
-- **Parâmetros de Requisição:**
-  - `email` (string) - Email do usuário (obrigatório).
-  - `password` (string) - Senha do usuário (obrigatório).
-- **Códigos de Status:**
-  - `200 OK` - Login bem-sucedido.
-  - `401 Unauthorized` - Credenciais inválidas.
-
-**Exemplo de Requisição:**
-```json
-{
-  "email": "igor@email.com",
-  "password": "igorrocha"
-}
+## 🚀 **Base URL**
+```
+http://localhost:4000
 ```
 
-**Exemplo de Resposta:**
-```json
-{
-    "data": {
-        "email": "igor@email.com",
-        "provider": "email",
-        "uid": "igor@email.com",
-        "id": 2,
-        "name": "Igor",
-        "role": "admin",
-        "admin": true,
-        "allow_password_change": false
-    }
-}
-```
+## 🔐 **Autenticação**
+A API utiliza autenticação via token (Bearer Token).
 
-### **Logout**
-- **Endpoint:** `DELETE /auth/sign_out`
-- **Descrição:** Encerra a sessão do usuário, invalidando o token de autenticação.
-- **Headers:**
-  - `Authorization: Bearer <token>`
+**Exemplo de Header:**
+```
+Authorization: Bearer <seu_token_aqui>
+```
 
 ---
 
-## **2. Usuário (User)**
+## 👤 **Usuário (User)**
 
-### **Criar Usuário**
-- **Endpoint:** `POST /auth`
-- **Descrição:** Cria um novo usuário na plataforma.
-- **Parâmetros de Requisição:**
-  - `name` (string) - Nome do usuário.
-  - `email` (string) - E-mail do usuário.
-  - `password` (string) - Senha.
-  - `confirm_password` (string) - Confirmação da senha.
-- **Códigos de Status:**
-  - `201 Created` - Usuário criado com sucesso.
-  - `422 Unprocessable Entity` - Erro de validação.
+- **Criar Usuário**  
+  `POST /auth`  
+  Criação de novo usuário.
 
-**Exemplo de Requisição:**
-```json
-{
-  "name": "Felipe",
-  "email": "felipe@email.com",
-  "password": "feliperocha",
-  "confirm_password": "feliperocha"
-}
-```
+- **Login**  
+  `POST /auth/sign_in`  
+  Retorna o token de autenticação.
 
-### **Atualizar Usuário**
-- **Endpoint:** `PATCH /users/:id`
-- **Descrição:** Atualiza informações de um usuário existente.
-- **Parâmetros:**
-  - `name`, `email`, `password` (opcionais)
+- **Listar Usuários**  
+  `GET /users`  
+  Retorna todos os usuários (requer permissão).
 
-**Exemplo de Requisição:**
-```json
-{
-  "user": {
-    "name": "Carol"
-  }
-}
-```
+- **Atualizar Usuário**  
+  `PATCH /users/:id`  
+  Atualiza informações de um usuário.
 
-### **Listar Usuários**
-- **Endpoint:** `GET /users`
-- **Descrição:** Retorna uma lista de todos os usuários cadastrados.
-- **Filtros de Busca (Ransack):**
-  - `q[name_cont]=João` - Filtra usuários com nome contendo "João".
+- **Excluir Usuário**  
+  `DELETE /users/:id`  
+  Remove um usuário do sistema.
 
 ---
 
-## **3. Nota Fiscal (Invoice)**
+## 🧾 **Nota Fiscal (Invoice)**
 
-### **Criar Nota Fiscal**
-- **Endpoint:** `POST /invoices`
-- **Descrição:** Registra uma nova nota fiscal vinculada ao usuário autenticado.
-- **Parâmetros:**
-  - `invoice_number` (string) - Número da nota.
-  - `purchase_date` (date) - Data de compra.
-  - `issue_date` (date) - Data de emissão.
+- **Criar Nota Fiscal**  
+  `POST /invoices`
 
-**Exemplo de Requisição:**
-```json
-{
-  "invoice_number": "INV202504022040",
-  "purchase_date": "2025-02-04",
-  "issue_date": "2025-02-04"
-}
-```
+- **Listar Notas Fiscais**  
+  `GET /invoices`
 
-### **Atualizar Nota Fiscal**
-- **Endpoint:** `PATCH /invoices/:id`
-- **Descrição:** Atualiza dados de uma nota fiscal existente.
-- **Códigos de Status:**
-  - `200 OK` - Atualização bem-sucedida.
-  - `404 Not Found` - Nota fiscal não encontrada.
+- **Atualizar Nota Fiscal**  
+  `PATCH /invoices/:id`
 
-### **Listar Notas Fiscais**
-- **Endpoint:** `GET /invoices`
-- **Filtros de Busca:**
-  - `q[invoice_number_cont]=1234` - Busca por número parcial da nota.
+- **Excluir Nota Fiscal**  
+  `DELETE /invoices/:id`
 
 ---
 
-## **4. Produto (Product)**
+## 📦 **Produto (Product)**
 
-### **Criar Produto**
-- **Endpoint:** `POST /products`
-- **Descrição:** Adiciona um novo produto, associando-o a uma nota fiscal e uma loja.
-- **Parâmetros:**
-  - `name` (string) - Nome do produto.
-  - `description` (string) - Descrição.
-  - `price` (number) - Preço.
-  - `serial_number` (string) - Número de série.
-  - `warranty_expiry_date` (date) - Data de expiração da garantia.
+- **Criar Produto**  
+  `POST /products`
 
-### **Filtros de Busca:**
-- `q[price_gt]=1000` - Filtra produtos com preço acima de 1000.
-- `q[category_eq]=Eletrônicos` - Produtos da categoria "Eletrônicos".
+- **Listar Produtos**  
+  `GET /products`
+
+- **Atualizar Produto**  
+  `PATCH /products/:id`
+
+- **Excluir Produto**  
+  `DELETE /products/:id`
 
 ---
 
-## **5. Garantia (Warranty)**
+## 🛡️ **Garantia (Warranty)**
 
-### **Criar Garantia**
-- **Endpoint:** `POST /warranties`
-- **Parâmetros:**
-  - `warranty_number` (string) - Número da garantia.
-  - `issue_date` (date) - Data de emissão.
-  - `expirity_date` (date) - Data de expiração.
-  - `product_id` (integer) - ID do produto associado.
-  - `validity_period` (integer) - Período de validade em meses.
+- **Criar Garantia**  
+  `POST /warranties`
 
-**Exemplo de Requisição:**
-```json
-{
-  "warranty": {
-    "warranty_number": "WT20260204",
-    "issue_date": "2025-02-04",
-    "expirity_date": "2027-02-04",
-    "product_id": 2,
-    "validity_period": 12
-  }
-}
-```
+- **Listar Garantias**  
+  `GET /warranties`
 
-### **Códigos de Erro:**
-- `404 Not Found` - Garantia não encontrada.
-- `422 Unprocessable Entity` - Dados inválidos.
+- **Atualizar Garantia**  
+  `PATCH /warranties/:id`
+
+- **Excluir Garantia**  
+  `DELETE /warranties/:id`
 
 ---
 
-## **6. Loja (Store)**
+## 🏬 **Loja (Store)**
 
-### **Criar Loja**
-- **Endpoint:** `POST /stores`
-- **Parâmetros:**
-  - `name` (string) - Nome da loja.
-  - `contact` (string) - E-mail de contato.
-  - `address` (string) - Endereço da loja.
+- **Criar Loja**  
+  `POST /stores`
 
-### **Atualizar Loja**
-- **Endpoint:** `PATCH /stores/:id`
-- **Descrição:** Atualiza informações de uma loja existente.
+- **Listar Lojas**  
+  `GET /stores`
 
-### **Listar Lojas**
-- **Endpoint:** `GET /stores`
-- **Filtros de Busca:**
-  - `q[name_cont]=Kabum` - Filtra lojas com nome "Kabum".
+- **Atualizar Loja**  
+  `PATCH /stores/:id`
+
+- **Excluir Loja**  
+  `DELETE /stores/:id`
+
+---
+
+## ⚠️ **Códigos de Status**
+- `200 OK` - Requisição bem-sucedida
+- `201 Created` - Recurso criado com sucesso
+- `401 Unauthorized` - Falha na autenticação
+- `403 Forbidden` - Acesso não autorizado
+- `404 Not Found` - Recurso não encontrado
+- `422 Unprocessable Entity` - Erro de validação
+
+## 📌 **Filtros de Busca (Ransack)**
+- `q[name_cont]=João` → Filtra usuários com "João" no nome
+- `q[price_gt]=1000` → Produtos com preço maior que 1000
+
+---
+
+## 📫 **Contato**
+Desenvolvido por Felipe Rocha, Danielle Fraga, Fabio Bezerra, Mathias Soares e Renan. Para dúvidas, envie um DM.
+
+
 
 ---
 
