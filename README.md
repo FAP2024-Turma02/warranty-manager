@@ -25,8 +25,16 @@
 **Exemplo de Resposta:**
 ```json
 {
-  "token": "abc123",
-  "user_id": 1
+    "data": {
+        "email": "igor@email.com",
+        "provider": "email",
+        "uid": "igor@email.com",
+        "id": 2,
+        "name": "Igor",
+        "role": "admin",
+        "admin": true,
+        "allow_password_change": false
+    }
 }
 ```
 
