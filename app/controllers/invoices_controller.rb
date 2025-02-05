@@ -1,28 +1,29 @@
 class InvoicesController < ApplicationController
   def index
-    @invoices = policy_scope(Invoice)
+    authorize Invoice
+    @q = policy_scope(Invoice).ransack(params[:q]) # Integração com Ransack
+    @invoices = @q.result
 
     render json: @invoices.map { |invoice| InvoiceSerializer.call(invoice) }
   end
 
   def show
     authorize invoice
-
-    render json: InvoiceSerializer.call(@invoice)
+    render json: InvoiceSerializer.call(invoice)
   end
 
   def create
     authorize Invoice
-    @invoice = current_user.invoices.create(invoice_params)
+    @invoice = current_user.invoices.create!(invoice_params)
 
     render json: InvoiceSerializer.call(@invoice), status: :created
   end
 
   def update
     authorize invoice
-    invoice.update(invoice_params)
+    invoice.update!(invoice_params)
 
-    render json: InvoiceSerializer.call(@invoice), status: :ok
+    render json: InvoiceSerializer.call(invoice), status: :ok
   end
 
   def destroy
@@ -35,7 +36,7 @@ class InvoicesController < ApplicationController
   private
 
   def invoice
-    @invoice = Invoice.find(params[:id])
+    @invoice ||= Invoice.find(params[:id])
   end
 
   def invoice_params

@@ -1,7 +1,9 @@
 class StoresController < ApplicationController
   def index
-    @stores = policy_scope(Store)
-    authorize @stores
+    authorize Store
+    @q = policy_scope(Store).ransack(params[:q]) # Adicionando Ransack
+    @stores = @q.result
+
     render_success(@stores.map { |store| StoreSerializer.call(store) })
   end
 

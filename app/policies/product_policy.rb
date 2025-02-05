@@ -15,11 +15,11 @@ class ProductPolicy < ApplicationPolicy
   end
 
   def index?
-    user.admin? || user_has_access_to_products?
+    true # O acesso é controlado pelo policy_scope
   end
 
   def create?
-    user.admin? || user.invoices.exists?(id: record.invoice_id)
+    user.admin? || (record.invoice_id.present? && user.invoices.exists?(id: record.invoice_id))
   end
 
   def update?
